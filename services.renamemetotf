@@ -1,0 +1,80 @@
+resource "google_project_service" "alloydb_googleapis_com" {
+  project = var.project
+  service = "alloydb.googleapis.com"
+}
+
+
+resource "google_project_service" "cloudapis_googleapis_com" {
+  project = var.project
+  service = "cloudapis.googleapis.com"
+}
+resource "google_project_service" "cloudasset_googleapis_com" {
+  project = var.project
+  service = "cloudasset.googleapis.com"
+}
+resource "google_project_service" "clouddebugger_googleapis_com" {
+  project = var.project
+  service = "clouddebugger.googleapis.com"
+}
+resource "google_project_service" "cloudtrace_googleapis_com" {
+  project = var.project
+  service = "cloudtrace.googleapis.com"
+}
+resource "google_project_service" "compute_googleapis_com" {
+  project = var.project
+  service = "compute.googleapis.com"
+}
+
+resource "google_project_service" "iap_googleapis_com" {
+  project = var.project
+  service = "iap.googleapis.com"
+}
+resource "google_project_service" "logging_googleapis_com" {
+  project = var.project
+  service = "logging.googleapis.com"
+}
+resource "google_project_service" "monitoring_googleapis_com" {
+  project = var.project
+  service = "monitoring.googleapis.com"
+}
+resource "google_project_service" "oslogin_googleapis_com" {
+  project = var.project
+  service = "oslogin.googleapis.com"
+}
+resource "google_project_service" "secretmanager_googleapis_com" {
+  project = var.project
+  service = "secretmanager.googleapis.com"
+}
+resource "google_project_service" "securitycenter_googleapis_com" {
+  project = var.project
+  service = "securitycenter.googleapis.com"
+}
+resource "google_project_service" "servicemanagement_googleapis_com" {
+  project = var.project
+  service = "servicemanagement.googleapis.com"
+}
+resource "google_project_service" "servicenetworking_googleapis_com" {
+  project = var.project
+  service = "servicenetworking.googleapis.com"
+}
+resource "google_project_service" "serviceusage_googleapis_com" {
+  project = var.project
+  service = "serviceusage.googleapis.com"
+}
+resource "google_project_service" "sql_component_googleapis_com" {
+  project = var.project
+  service = "sql-component.googleapis.com"
+}
+resource "google_project_service" "storage_api_googleapis_com" {
+  project = var.project
+  service = "storage-api.googleapis.com"
+}
+resource "google_project_service" "storage_component_googleapis_com" {
+  project = var.project
+  service = "storage-component.googleapis.com"
+}
+resource "google_project_service" "storage_googleapis_com" {
+  project = var.project
+  service = "storage.googleapis.com"
+}
+
