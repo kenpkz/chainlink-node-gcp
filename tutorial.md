@@ -1,6 +1,6 @@
 # Chainlink Node On Google Cloud With Confidential Compute, AlloyDB and Identity Aware Proxy 
-
 ## Creating secrets required in Secret Manager
+## It is recommended to start with a brand new GCP project for this setup
 #### Create a secret in Secret Manager for the AlloyDB Password
 
 ```bash
