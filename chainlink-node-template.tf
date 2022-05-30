@@ -4,9 +4,36 @@ resource "google_service_account" "default" {
   display_name = "Chainlink Node Service Account"
 }
 
-resource "google_project_iam_binding" "editor" {
+resource "google_project_iam_binding" "logging" {
   project = var.project
-  role    = "roles/editor"
+  role    = "roles/logging.logWriter"
+
+  members = [
+    "serviceAccount:${google_service_account.default.email}",
+  ]
+}
+
+resource "google_project_iam_binding" "monitoring" {
+  project = var.project
+  role    = "roles/monitoring.metricWriter"
+
+  members = [
+    "serviceAccount:${google_service_account.default.email}",
+  ]
+}
+
+resource "google_project_iam_binding" "monitoringviewer" {
+  project = var.project
+  role    = "roles/monitoring.viewer"
+
+  members = [
+    "serviceAccount:${google_service_account.default.email}",
+  ]
+}
+
+resource "google_project_iam_binding" "metadata" {
+  project = var.project
+  role    = "roles/stackdriver.resourceMetadata.writer"
 
   members = [
     "serviceAccount:${google_service_account.default.email}",

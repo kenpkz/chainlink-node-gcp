@@ -21,6 +21,7 @@ ALLOW_ORIGINS=*" > ~/.chainlink-rinkeby/.env
 ETH_CONTAINER_IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' $(docker ps -f name=eth -q))
 echo "ETH_URL=ws://$ETH_CONTAINER_IP:8546" >> ~/.chainlink-rinkeby/.env
 # Once AlloDB methods become GA, you could use following command to find the instance IP address, as opposed to hardcoding it here $(gcloud beta alloydb instances describe chainlink-instance --cluster=chainlink-cluster --region=asia-southeast1 --format="value(ipAddress)")
+# Change the AlloyDB Instance IP address to your own value
 echo "DATABASE_URL=postgresql://postgres:$(gcloud secrets versions access 1 --secret="alloydb-password")@10.103.72.2:5432/chainlinkdb" >> ~/.chainlink-rinkeby/.env
 
 # Change the email to your defined value

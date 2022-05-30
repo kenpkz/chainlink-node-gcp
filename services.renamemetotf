@@ -3,7 +3,6 @@ resource "google_project_service" "alloydb_googleapis_com" {
   service = "alloydb.googleapis.com"
 }
 
-
 resource "google_project_service" "cloudapis_googleapis_com" {
   project = var.project
   service = "cloudapis.googleapis.com"
