@@ -1,6 +1,7 @@
 # Chainlink Node On Google Cloud With Confidential Compute, AlloyDB and Identity Aware Proxy 
 
-**A guided setup is available via clicking the button below.**
+
+### Clicking the button below to start the guided setup 
 
 [![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.png)](https://ssh.cloud.google.com/cloudshell/open?cloudshell_git_repo=https://github.com/kenpkz/chainlink-node-gcp&cloudshell_tutorial=tutorial.md)
 
@@ -8,11 +9,23 @@
 
 ![Architecture](./Chainlink%20GCP%20Architecture.png)
 
-The architect leverages following  Google Cloud products to enhance the overall security
-* **Identity Aware Proxy** (a part of the Google's zero trust network access solution) - Chainlink Nodes do not require public IP address. SSH to the nodes and web access for the node operator web page are authenticated against GCP Cloud Identity
-* **Confidential Compute** - encryption-in-process is realised, becasue the memory is encrypted with a key generated from the chip at the boot time
-* **Secret Manager** - Securely store the AlloyDB password, Chainlink wallet password, and the Chainlink API secret
-* **Private Service Connect** - Allow the access between the Chainlink node and AlloyDB via private IP addresses customer defined in the scustomer owned subnet
+**Key products used in the setup**
+####Confidential Compute
+With 2nd Gen AMD EPYC CPUs, [Confidential Computing](https://cloud.google.com/confidential-computing) realises encryption-in-process without any application code change and minimum performance impact. This feature provides the Chainlink operators additional layer of trust.
+
+####AlloyDB For PostgreSQL
+[AlloyDB For PostgreSQL](https://cloud.google.com/alloydb) is a fully managed and highly available PostgreSQL-compatible database service for the Chainlink node backend.
+
+####Identity Aware Proxy (IAP)
+  
+[IAP](https://cloud.google.com/iap) is a part of the Google's zero trust network access solution. With IAP, Chainlink Node VMs do not require public IP addresses. SSH to the nodes, and web access for the node operator web page are authenticated against GCP Cloud Identity via IAP.
+
+####Secret Manager
+[Secret Manager](https://cloud.google.com/secret-manager) is used to securely store the AlloyDB password, Chainlink wallet password, and the Chainlink API secrets. 
+
+
+####Private Service Connect
+[Private Service Connect](https://cloud.google.com/vpc/docs/private-service-connect) allows the access between the Chainlink node VMs and AlloyDB through private IP addresses customer defined in the customer owned subnet.
 
 
 #### Note
