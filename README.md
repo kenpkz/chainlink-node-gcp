@@ -1,4 +1,4 @@
-# Chainlink Node On Google Cloud With Confidential Compute, AlloyDB and Identity Aware Proxy 
+# Chainlink Node On Google Cloud 
 
 
 ### Clicking the button below to start the guided setup 
