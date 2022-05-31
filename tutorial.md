@@ -73,6 +73,8 @@ You can retrieve the AlloyDB password from Secret Manager
 2. Change the AlloyDB Instance IP address on line 25 in the `startup.sh` file
 3. Change the Chainlink login email address to your own value on line 28 in the `startup.sh` file
 
+> The setup is using the rinkeby testnet, if you would like to point to the mainnet, change the setting in the `startup.sh` file accordingly based on the Chainlink official doc [here](https://docs.chain.link/docs/running-a-chainlink-node/)
+
 #### Execute the Terraform scripts
 ```bash
 terraform init
@@ -145,3 +147,4 @@ gcloud secrets versions access 1 --secret="api-password"
 ```
 
 Browse to the domain that you set, and use the username you set in the `startup.sh` line 28 and the password from the gcloud above
+

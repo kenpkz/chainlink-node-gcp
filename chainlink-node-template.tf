@@ -59,7 +59,7 @@ resource "google_compute_instance_template" "chainlink_node_template" {
     auto_delete  = true
     boot         = true
     device_name  = "chainlink-node-template"
-    disk_size_gb = 100
+    disk_size_gb = 1000
     disk_type    = "pd-balanced"
     mode         = "READ_WRITE"
     source_image = "projects/confidential-vm-images/global/images/ubuntu-2004-focal-v20220404"
