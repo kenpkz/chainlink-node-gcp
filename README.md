@@ -1,5 +1,6 @@
 # Chainlink Node On Google Cloud 
 
+This blog unpacks the architecture of the Chainlink nodes on Google Cloud blueprint and key Google Cloud products involved. If you’d like to deploy the blueprint directly, feel free to click the button below to start the guided setup or visit the [Github Repo](https://github.com/kenpkz/chainlink-node-gcp)
 
 ### Clicking the button below to start the guided setup 
 
@@ -29,5 +30,5 @@ Private Service Connect allows the access between the Chainlink node VMs and All
 
 
 #### Note
-* AlloyDB is a pre-GA product at the time of writing this doc, hence the deployment of the AlloyDB is not orchestrated through Terraform. I will update the code or feel free to raise a pull request to update the code.
-* Chainlink node VM contains secrets in plaintext such Chianlink wallet password, API secret, and the AlloyDB password. Node operaters should remove the .env, .password, and .api files after confirming the Chainlink node is running as expected.
+* AlloyDB is a pre-GA product at the time of writing this blog, there isn’t a Terraform provider for AlloyDB, hence the deployment of the AlloyDB in this blueprint is not orchestrated through Terraform. I will update the code once the provider is available, or feel free to raise a pull request to update the code on Github.
+* At the startup time, Chainlink software requires plaintext secrets on the disk. Therefore the Chainlink node VM contains secrets in plaintext, such as Chianlink wallet password, API secret, and the AlloyDB password. Node operators should remove the .env, .password, and .api files after confirming the Chainlink node is running as expected.
