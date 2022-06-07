@@ -11,7 +11,7 @@ gcloud services enable secretmanager.googleapis.com
 printf $(gpg --gen-random --armor 1 13) | gcloud secrets create alloydb-password --data-file=-
 ```
 
-#### Creaet Chainlink API password & login password
+#### Create Chainlink API password & login password
 We will need these secrets to launch Chainlink node later
 ```bash
 printf $(gpg --gen-random --armor 1 13) | gcloud secrets create chainlink-password --data-file=-
@@ -19,7 +19,7 @@ printf $(gpg --gen-random --armor 1 13) | gcloud secrets create api-password --d
 ```
 
 ## Create AlloyDB
-Terraform provide for AlloyDB has not been released, hence we will use gcloud SDK to provision the AlloyDB clsuter, instnce and the database.
+Terraform provider for AlloyDB has not been released, hence we will use gcloud SDK to provision the AlloyDB cluster, instance and the database.
 
 * refer to the [official Google Cloud AlloyDB doc](https://cloud.google.com/alloydb/docs/cluster-create) for the ***prerequisites*** such as VPC Private Service Control and IAM permissions
 * ensure the VPC, Private Service Connect are setup
@@ -56,12 +56,11 @@ Follow the [instructions here to create a database](https://cloud.google.com/all
 
 You can retrieve the AlloyDB password from Secret Manager
 
->Use `chainlinkdb` as the database name, or you can define your own value, but ensure you edit the databse name accordingly on line 23 in the `startup.sh` file
+>Use `chainlinkdb` as the database name, or you can define your own value, but ensure you edit the database name accordingly on line 23 in the `startup.sh` file
 
 
 
 ## Create Chianlink Node Confidential VMs, Global HTTPS Load Balancer etc. using Terraform
-
 
 
 > The prerequisites are the GPC project, VPC have been provisioned, and the IAM identity to execute the Terraform code has sufficient privilege. If you are following along using the Cloud Shell tutorial, it will be the IAM identity that you used to sign in the current GCP session.
@@ -92,7 +91,7 @@ terraform apply -var-file="terraform.tfvars" --auto-approve
 > * One of the VMs will show chainlink node container as "unhealthy", and the other VM has chainlink node container showing "healthy". This is an expected behaviour as Chainlink node is currently single threaded.
 
 ## Configure the TLS Certificate
-On line 61 in the `chainlink-mig-lb.tf` file, we provisioned a Google managed TLS certificate based on the domain provied on line 7 in the `terraform.tfvars` file. To finalise the certificate provisioning, we need to add an A record for the domain.
+On line 61 in the `chainlink-mig-lb.tf` file, we provisioned a Google managed TLS certificate based on the domain provided on line 7 in the `terraform.tfvars` file. To finalise the certificate provisioning, we need to add an A record for the domain.
 
 1. Find the provisioned HTTPS Load Balancer external IP address
    ```bash
@@ -115,10 +114,12 @@ gcloud iap web remove-iam-policy-binding --resource-type=backend-services --serv
 
 ```
 
-> Note HTTPS access on the HTTPS Load Balancer must be working before the IAP web access can function correclty
+> Note HTTPS access on the HTTPS Load Balancer must be working before the IAP web access can function correctly
 
 #### Cloud Armor
-In this setup, we only apply the rate limiting policy. Adjust the parameters in the policy below to your own values, refer to the doc [here] (https://cloud.google.com/armor/docs/configure-security-policies#rate-limiting) for more details.
+In this setup example, I've only applied the rate limiting policy. That said, you should apply other Cloud Armor rules as you see fit, you can find a list of rules [here](https://cloud.google.com/armor/docs/configure-security-policies).
+
+Adjust the parameters in the policy below to your own values, refer to the doc [here] (https://cloud.google.com/armor/docs/configure-security-policies#rate-limiting) for more details.
 
 Create the Cloud Armor policy and the rate limiting rule
 ```bash
@@ -146,5 +147,11 @@ Retrieve the password from the Secret Manager
 gcloud secrets versions access 1 --secret="api-password"
 ```
 
-Browse to the domain that you set, and use the username you set in the `startup.sh` line 28 and the password from the gcloud above
+Browse to the domain that you set above, and use the username you set in the `startup.sh` line 28 and the password from the gcloud above. 
 
+## Access/SSH the Chainlink Nodes via Identity Aware Proxy (IAP)
+
+You can SSH to the Chainlink nodes via IAP using gcloud or directly on the Cloud Console. See the doc [here](https://cloud.google.com/iap/docs/using-tcp-forwarding#tunneling_ssh_connections).
+```bash
+gcloud compute ssh INSTANCE_NAME
+```
