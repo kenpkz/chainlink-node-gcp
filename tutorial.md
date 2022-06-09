@@ -1,6 +1,6 @@
 # Chainlink Node On Google Cloud With Confidential Compute, AlloyDB and Identity Aware Proxy 
 ## Creating secrets required in Secret Manager
-## It is recommended to start with a brand new GCP project for this setup
+## It is recommended to start with a brand new Google Cloud project for this setup
 #### Create a secret in Secret Manager for the AlloyDB Password
 
 ```bash
@@ -63,9 +63,9 @@ You can retrieve the AlloyDB password from Secret Manager
 ## Create Chianlink Node Confidential VMs, Global HTTPS Load Balancer etc. using Terraform
 
 
-> The prerequisites are the GPC project, VPC have been provisioned, and the IAM identity to execute the Terraform code has sufficient privilege. If you are following along using the Cloud Shell tutorial, it will be the IAM identity that you used to sign in the current GCP session.
+> The prerequisites are the GPC project, VPC have been provisioned, and the IAM identity to execute the Terraform code has sufficient privilege. If you are following along using the Cloud Shell tutorial, it will be the IAM identity that you used to sign in the current Google Cloud session.
 
-> You can manually enable required GCP product APIs listed in the `services.renamemetotf` file. Or you can change the `services.renamemetotf` file to `services.tf`, Terraform will enable the service APIs. **Be careful if you use Terraform to enable APIs and run `terraform destroy`, there might errors because the service APIs might get deleted before depended resources.**   
+> You can manually enable required Google Cloud product APIs listed in the `services.renamemetotf` file. Or you can change the `services.renamemetotf` file to `services.tf`, Terraform will enable the service APIs. **Be careful if you use Terraform to enable APIs and run `terraform destroy`, there might errors because the service APIs might get deleted before depended resources.**   
 
 #### Prepare the Terraform scripts
 1. Change the variables to your own values in the `terraform.tfvars` file
